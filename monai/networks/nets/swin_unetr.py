@@ -208,19 +208,19 @@ class SwinUNETR(nn.Module):
         #     res_block=True,
         # )
 
-        self.decoder5 = UnetrUpBlock(
-            spatial_dims=spatial_dims,
-            in_channels=16 * feature_size,
-            out_channels=16 * feature_size,
-            kernel_size=3,
-            upsample_kernel_size=2,
-            norm_name=norm_name,
-            res_block=True,
-        )
+        # self.decoder5 = UnetrUpBlock(
+        #     spatial_dims=spatial_dims,
+        #     in_channels=16 * feature_size,
+        #     out_channels=16 * feature_size,
+        #     kernel_size=3,
+        #     upsample_kernel_size=2,
+        #     norm_name=norm_name,
+        #     res_block=True,
+        # )
 
         self.decoder4 = UnetrUpBlock(
             spatial_dims=spatial_dims,
-            in_channels=feature_size * 8,
+            in_channels=feature_size * 16,
             out_channels=feature_size * 8,
             kernel_size=3,
             upsample_kernel_size=2,
@@ -240,22 +240,22 @@ class SwinUNETR(nn.Module):
         self.decoder2 = UnetrUpBlock(
             spatial_dims=spatial_dims,
             in_channels=feature_size * 2,
-            out_channels=feature_size,
+            out_channels=feature_size * 2,
             kernel_size=3,
             upsample_kernel_size=2,
             norm_name=norm_name,
             res_block=True,
         )
 
-        # self.decoder1 = UnetrUpBlock(
-        #     spatial_dims=spatial_dims,
-        #     in_channels=feature_size,
-        #     out_channels=feature_size,
-        #     kernel_size=3,
-        #     upsample_kernel_size=2,
-        #     norm_name=norm_name,
-        #     res_block=True,
-        # )
+        self.decoder1 = UnetrUpBlock(
+            spatial_dims=spatial_dims,
+            in_channels=feature_size,
+            out_channels=feature_size,
+            kernel_size=3,
+            upsample_kernel_size=2,
+            norm_name=norm_name,
+            res_block=True,
+        )
 
         self.out = UnetOutBlock(spatial_dims=spatial_dims, in_channels=feature_size, out_channels=out_channels)
 
